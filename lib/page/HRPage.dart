@@ -1,12 +1,21 @@
+// lib/pages/hr_page.dart
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HRPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HR Services'),
-        backgroundColor: Colors.blue[900], // Professional banking color
+        title: Text(
+          'HR Services',
+          style: GoogleFonts.lora(
+            fontWeight: FontWeight.w600, // Lora font with weight 600
+            color: Colors.white, // Set title font color to white
+          ),
+        ),
+        backgroundColor: Colors.blue[900], // Keep AppBar color as blue
+        iconTheme: IconThemeData(color: Colors.white), // Set back button color to white
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -38,10 +47,10 @@ class HRPage extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(
+              style: GoogleFonts.lora(
                 fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.blue[800],
+                fontWeight: FontWeight.w600,
+                color: Colors.blue[800], // Card title color
               ),
             ),
             SizedBox(height: 12.0),
@@ -55,7 +64,13 @@ class HRPage extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.redAccent, // Deny button color
                   ),
-                  child: Text('Deny'),
+                  child: Text(
+                    'Deny',
+                    style: GoogleFonts.lora(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white, // Button text color
+                    ),
+                  ),
                 ),
                 SizedBox(width: 8.0),
                 ElevatedButton(
@@ -65,7 +80,13 @@ class HRPage extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.greenAccent, // Approve button color
                   ),
-                  child: Text('Approve'),
+                  child: Text(
+                    'Approve',
+                    style: GoogleFonts.lora(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white, // Button text color
+                    ),
+                  ),
                 ),
               ],
             ),
