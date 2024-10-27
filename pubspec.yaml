@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   path_provider: ^2.0.11
   google_fonts: ^6.2.1  # Downgrade to a stable version
+  go_router: ^5.0.0
 
 dev_dependencies:
   flutter_test:

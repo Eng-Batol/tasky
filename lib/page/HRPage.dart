@@ -29,7 +29,7 @@ class HRPage extends StatelessWidget {
           child: Column( // Change from ListView to Column for scrollable cards
             children: [
               _buildHrCard('Apply for a Loan'),
-              _buildHrCard('Employee Vacation'),
+              _buildHrCard('Employee Leaves'),
               _buildHrCard('Apply for a Salary Certificate'),
               _buildHrCard('Apply for a Health Insurance Card'),
               _buildHrCard('Apply for an Employee ID'),
