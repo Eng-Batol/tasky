@@ -17,18 +17,19 @@ class ManagerPage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: [
-            _buildManagerCard('Employee Leaves'),
-            _buildManagerCard('Annual Evaluation'),
-            _buildManagerCard('Monitor Tasks'),
+            _buildManagerServiceCard('Employee Leaves'),
+            _buildManagerServiceCard('Annual Evaluation'),
+            _buildManagerServiceCard('Monitor Tasks'),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildManagerCard(String title) {
+  // Function to build Manager service cards
+  Widget _buildManagerServiceCard(String title) {
     return Card(
-      color: Colors.blue[50],
+      color: Colors.blue[50], // Light blue background for cards
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
@@ -36,34 +37,33 @@ class ManagerPage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               title,
-              style: GoogleFonts.lora(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Colors.blue[800],
-              ),
+              style: GoogleFonts.lora(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.blue[800]),
             ),
-            SizedBox(height: 12.0),
+            const SizedBox(height: 10),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    // Navigate to the respective page
+                    // Handle denial
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue[900],
+                    backgroundColor: Colors.blue[400], // Light blue for denial
                   ),
-                  child: Text(
-                    'View',
-                    style: GoogleFonts.lora(
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
+                  child: Text('Deny'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    // Handle approval
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue[600], // Darker blue for approval
                   ),
+                  child: Text('Approve'),
                 ),
               ],
             ),

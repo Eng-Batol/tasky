@@ -1,6 +1,7 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tasky/page/EmployeePage.dart';
 import 'package:tasky/page/HRPage.dart';
 import 'package:tasky/page/ManagerPage.dart';
 
@@ -38,7 +39,7 @@ class HomePage extends StatelessWidget {
                 // Navigate to HR Page
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HRPage()),
+                  MaterialPageRoute(builder: (context) => HrPage()),
                 );
               },
               child: Text('Go to HR Page'),
@@ -53,6 +54,17 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: Text('Go to Manager Page'),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                // Navigate to Employee Page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EmployeePage()),
+                );
+              },
+              child: Text('Go to Employee Page'),
             ),
           ],
         ),

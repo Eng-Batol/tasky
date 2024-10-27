@@ -2,48 +2,37 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HRPage extends StatelessWidget {
-  final List<Color> buttonColors = [
-    Colors.blue[300]!, // Softer Deny button color
-    Colors.blue[500]!, // Softer Approve button color
-    Colors.blue[700]!, // Another blue shade for variations
-  ];
-
+class HrPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'HR Services',
-          style: GoogleFonts.lora(
-            fontWeight: FontWeight.w600, // Lora font with weight 600
-            color: Colors.white, // Set title font color to white
-          ),
+          style: GoogleFonts.lora(fontWeight: FontWeight.w600, color: Colors.white),
         ),
-        backgroundColor: Colors.blue[900], // Keep AppBar color as blue
-        iconTheme: IconThemeData(color: Colors.white), // Set back button color to white
+        backgroundColor: Colors.blue[900],
       ),
-      body: SingleChildScrollView( // Wrap with SingleChildScrollView for scrolling
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column( // Change from ListView to Column for scrollable cards
-            children: [
-              _buildHrCard('Apply for a Loan'),
-              _buildHrCard('Employee Leaves'),
-              _buildHrCard('Apply for a Salary Certificate'),
-              _buildHrCard('Apply for a Health Insurance Card'),
-              _buildHrCard('Apply for an Employee ID'),
-              _buildHrCard('Detailed Annual Evaluation'),
-            ],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: [
+            _buildHrServiceCard('Apply for a Loan'),
+            _buildHrServiceCard('Employee Leave'), // Changed from Vacation to Leave
+            _buildHrServiceCard('Apply for a Salary Certificate'),
+            _buildHrServiceCard('Apply for a Health Insurance Card'),
+            _buildHrServiceCard('Apply for Employee ID'),
+            _buildHrServiceCard('Detailed Annual Evaluation'),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildHrCard(String title) {
+  // Function to build HR service cards
+  Widget _buildHrServiceCard(String title) {
     return Card(
-      color: Colors.blue[50], // Light background for joyful look
+      color: Colors.blue[50], // Light blue background for cards
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
@@ -51,50 +40,33 @@ class HRPage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               title,
-              style: GoogleFonts.lora(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Colors.blue[800], // Card title color
-              ),
+              style: GoogleFonts.lora(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.blue[800]),
             ),
-            SizedBox(height: 12.0),
+            const SizedBox(height: 10),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    // Handle denial action here
+                    // Handle denial
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: buttonColors[0], // Softer Deny button color
+                    backgroundColor: Colors.blue[400], // Light blue for denial
                   ),
-                  child: Text(
-                    'Deny',
-                    style: GoogleFonts.lora(
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white, // Button text color
-                    ),
-                  ),
+                  child: Text('Deny'),
                 ),
-                SizedBox(width: 8.0),
                 ElevatedButton(
                   onPressed: () {
-                    // Handle approval action here
+                    // Handle approval
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: buttonColors[1], // Softer Approve button color
+                    backgroundColor: Colors.blue[600], // Darker blue for approval
                   ),
-                  child: Text(
-                    'Approve',
-                    style: GoogleFonts.lora(
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white, // Button text color
-                    ),
-                  ),
+                  child: Text('Approve'),
                 ),
               ],
             ),
