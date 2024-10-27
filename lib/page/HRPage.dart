@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HRPage extends StatelessWidget {
+  final List<Color> buttonColors = [
+    Colors.blue[300]!, // Softer Deny button color
+    Colors.blue[500]!, // Softer Approve button color
+    Colors.blue[700]!, // Another blue shade for variations
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,17 +23,19 @@ class HRPage extends StatelessWidget {
         backgroundColor: Colors.blue[900], // Keep AppBar color as blue
         iconTheme: IconThemeData(color: Colors.white), // Set back button color to white
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView(
-          children: [
-            _buildHrCard('Apply for a Loan'),
-            _buildHrCard('Employee Vacation'),
-            _buildHrCard('Apply for a Salary Certificate'),
-            _buildHrCard('Apply for a Health Insurance Card'),
-            _buildHrCard('Apply for an Employee ID'),
-            _buildHrCard('Detailed Annual Evaluation'),
-          ],
+      body: SingleChildScrollView( // Wrap with SingleChildScrollView for scrolling
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column( // Change from ListView to Column for scrollable cards
+            children: [
+              _buildHrCard('Apply for a Loan'),
+              _buildHrCard('Employee Vacation'),
+              _buildHrCard('Apply for a Salary Certificate'),
+              _buildHrCard('Apply for a Health Insurance Card'),
+              _buildHrCard('Apply for an Employee ID'),
+              _buildHrCard('Detailed Annual Evaluation'),
+            ],
+          ),
         ),
       ),
     );
@@ -62,7 +70,7 @@ class HRPage extends StatelessWidget {
                     // Handle denial action here
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent, // Deny button color
+                    backgroundColor: buttonColors[0], // Softer Deny button color
                   ),
                   child: Text(
                     'Deny',
@@ -78,7 +86,7 @@ class HRPage extends StatelessWidget {
                     // Handle approval action here
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.greenAccent, // Approve button color
+                    backgroundColor: buttonColors[1], // Softer Approve button color
                   ),
                   child: Text(
                     'Approve',
