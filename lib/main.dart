@@ -2,9 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasky/page/EmployeePage.dart';
-import 'package:tasky/page/HRPage.dart';
 import 'package:tasky/page/ManagerPage.dart';
-
 
 void main() {
   runApp(MyApp());
@@ -34,16 +32,6 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                // Navigate to HR Page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HrPage()),
-                );
-              },
-              child: Text('Go to HR Page'),
-            ),
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
