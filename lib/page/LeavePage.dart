@@ -18,7 +18,11 @@ class _LeavePageState extends State<LeavePage> {
     'Unpaid Leave',
   ];
 
+  final List<int> leaveDays = List<int>.generate(
+      30, (index) => index + 1); // Generates days from 1 to 30
+
   String? selectedLeave; // Variable to store selected leave
+  int? selectedDays; // Variable to store selected leave duration in days
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +41,7 @@ class _LeavePageState extends State<LeavePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Leave type dropdown
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(
                   labelText: "Select Leave Type",
@@ -44,6 +49,13 @@ class _LeavePageState extends State<LeavePage> {
                     borderRadius: BorderRadius.circular(8.0),
                     borderSide: BorderSide(color: Colors.blue.shade900),
                   ),
+                ),
+                hint: Text(
+                  "Choose your leave from here",
+                  style: GoogleFonts.lora(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey[600]),
                 ),
                 value: selectedLeave,
                 items: leaveOptions.map((leave) {
@@ -60,12 +72,69 @@ class _LeavePageState extends State<LeavePage> {
                   setState(() {
                     selectedLeave = value;
                   });
-                  if (value != null) {
-                    // Show confirmation dialog
-                    _showConfirmationDialog(context, value);
-                  }
                 },
                 icon: Icon(Icons.arrow_drop_down, color: Colors.blue[900]),
+              ),
+              SizedBox(height: 16), // Space between dropdowns
+
+              // Duration dropdown
+              DropdownButtonFormField<int>(
+                decoration: InputDecoration(
+                  labelText: "Select Duration (Days)",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                    borderSide: BorderSide(color: Colors.blue.shade900),
+                  ),
+                ),
+                hint: Text(
+                  "Choose the number of days",
+                  style: GoogleFonts.lora(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey[600]),
+                ),
+                value: selectedDays,
+                items: leaveDays.map((days) {
+                  return DropdownMenuItem(
+                    value: days,
+                    child: Text(
+                      '$days day${days > 1 ? 's' : ''}', // Pluralize "day" if needed
+                      style: GoogleFonts.lora(
+                          fontSize: 16, fontWeight: FontWeight.w500),
+                    ),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    selectedDays = value;
+                  });
+                },
+                icon: Icon(Icons.arrow_drop_down, color: Colors.blue[900]),
+              ),
+              SizedBox(height: 16), // Additional space if needed for layout
+
+              // Submit button
+              ElevatedButton(
+                onPressed: () {
+                  if (selectedLeave != null && selectedDays != null) {
+                    _showConfirmationDialog(
+                        context, selectedLeave!, selectedDays!);
+                  } else {
+                    // Show error message if selection is incomplete
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                          content: Text(
+                              "Please select both leave type and duration.")),
+                    );
+                  }
+                },
+                child: Text("Apply for Leave"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[900],
+                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  textStyle: GoogleFonts.lora(
+                      fontSize: 16, fontWeight: FontWeight.w600),
+                ),
               ),
             ],
           ),
@@ -74,13 +143,15 @@ class _LeavePageState extends State<LeavePage> {
     );
   }
 
-  void _showConfirmationDialog(BuildContext context, String selectedLeave) {
+  void _showConfirmationDialog(
+      BuildContext context, String selectedLeave, int selectedDays) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("Confirm Selection"),
-          content: Text("Are you sure you want to apply for $selectedLeave?"),
+          content: Text(
+              "Are you sure you want to apply for $selectedLeave for $selectedDays day(s)?"),
           actions: [
             TextButton(
               child: Text("Cancel"),
@@ -93,7 +164,7 @@ class _LeavePageState extends State<LeavePage> {
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
                 Navigator.pop(context,
-                    selectedLeave); // Return to EmployeePage with selected leave
+                    selectedLeave); // Return to EmployeePage with leave type
               },
             ),
           ],
