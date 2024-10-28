@@ -130,7 +130,8 @@ class _LeavePageState extends State<LeavePage> {
                 },
                 child: Text("Apply for Leave"),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue[900],
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue[900], // Text color
                   padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   textStyle: GoogleFonts.lora(
                       fontSize: 16, fontWeight: FontWeight.w600),
