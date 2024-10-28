@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasky/page/LeavePage.dart';
+import 'package:tasky/page/ApplyForServicesPage.dart'; // Import the new ApplyForServicesPage
 
 class EmployeePage extends StatelessWidget {
   @override
@@ -18,15 +19,22 @@ class EmployeePage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: ListView(
           children: [
-            _buildEmployeeServiceCard('Apply for a Loan'),
-            _buildEmployeeServiceCard('Salary Certificate'),
-            _buildEmployeeServiceCard('Insurance Card'),
-            _buildEmployeeServiceCard('Apply for Employee ID'),
             _buildEmployeeServiceCard('Update Data'),
             _buildEmployeeServiceCard('Attendance and Departure'),
             _buildEmployeeServiceCard('Employee Tasks'),
             _buildEmployeeServiceCard('HR Alerts'),
             _buildEmployeeServiceCard('Employee Evaluation Score'),
+            GestureDetector(
+              onTap: () {
+                // Navigate to ApplyForServicesPage when the card is tapped
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ApplyForServicesPage()),
+                );
+              },
+              child: _buildEmployeeServiceCard('Apply for services'),
+            ),
           ],
         ),
       ),
